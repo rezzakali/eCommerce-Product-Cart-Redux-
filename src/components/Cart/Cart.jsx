@@ -6,6 +6,10 @@ function Cart() {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cart);
 
+  const result = cartItems
+    .map((cartItem) => cartItem.quantity * cartItem.price)
+    .reduce((acc, curr) => acc + curr);
+
   const handleDelete = (cartId) => {
     dispatch(deleteCart(cartId));
   };
@@ -16,15 +20,6 @@ function Cart() {
   const decrementHandler = (product) => {
     dispatch(decrease(product));
   };
-  // let totalPrice = 0;
-
-  const getTotalPrice = (cartItem) => {
-    return cartItem.reduce((total, item) => {
-      return total + item.price * item.quantity;
-    }, 0);
-  };
-  const totalsPrice = getTotalPrice(cartItems);
-  console.log(totalsPrice);
 
   return (
     <main className="py-16">
@@ -74,7 +69,9 @@ function Cart() {
                     {/* price  */}
                     <p className="text-lg font-bold">
                       BDT{' '}
-                      <span className="lws-calculatedPrice">{totalsPrice}</span>
+                      <span className="lws-calculatedPrice">
+                        {cartItem.price}
+                      </span>
                     </p>
                   </div>
                   {/* delete button  */}
@@ -100,7 +97,7 @@ function Cart() {
                 <div className="flex items-center justify-between">
                   <p>Sub Total</p>
                   <p>
-                    BDT <span className="lws-subtotal">8800</span>
+                    BDT <span className="lws-subtotal">{result}</span>
                   </p>
                 </div>
                 {/* Discount  */}
@@ -121,7 +118,7 @@ function Cart() {
                 <div className="flex items-center justify-between pb-4">
                   <p className="font-bold">TOTAL</p>
                   <p className="font-bold">
-                    BDT <span className="lws-total">8800</span>
+                    BDT <span className="lws-total">{result}</span>
                   </p>
                 </div>
                 <button className="placeOrderbtn">place order</button>
