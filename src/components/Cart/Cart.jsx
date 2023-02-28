@@ -16,7 +16,15 @@ function Cart() {
   const decrementHandler = (product) => {
     dispatch(decrease(product));
   };
-  let totalPrice = 0;
+  // let totalPrice = 0;
+
+  const getTotalPrice = (cartItem) => {
+    return cartItem.reduce((total, item) => {
+      return total + item.price * item.quantity;
+    }, 0);
+  };
+  const totalsPrice = getTotalPrice(cartItems);
+  console.log(totalsPrice);
 
   return (
     <main className="py-16">
@@ -25,8 +33,6 @@ function Cart() {
         <div className="cartListContainer">
           <div className="space-y-6">
             {cartItems?.map((cartItem, id) => {
-              totalPrice += cartItem.quantity * cartItem.price;
-
               return (
                 <div className="cartCard" key={id}>
                   <div className="flex items-center col-span-6 space-x-6">
@@ -68,7 +74,7 @@ function Cart() {
                     {/* price  */}
                     <p className="text-lg font-bold">
                       BDT{' '}
-                      <span className="lws-calculatedPrice">{totalPrice}</span>
+                      <span className="lws-calculatedPrice">{totalsPrice}</span>
                     </p>
                   </div>
                   {/* delete button  */}
