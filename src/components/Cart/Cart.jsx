@@ -6,9 +6,9 @@ function Cart() {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cart);
 
-  const result = cartItems
-    .map((cartItem) => cartItem.quantity * cartItem.price)
-    .reduce((acc, curr) => acc + curr);
+  const totalAmount = cartItems
+    ?.map((cartItem) => cartItem.quantity * cartItem.price)
+    ?.reduce((acc, curr) => acc + curr, 0);
 
   const handleDelete = (cartId) => {
     dispatch(deleteCart(cartId));
@@ -97,7 +97,7 @@ function Cart() {
                 <div className="flex items-center justify-between">
                   <p>Sub Total</p>
                   <p>
-                    BDT <span className="lws-subtotal">{result}</span>
+                    BDT <span className="lws-subtotal">{totalAmount}</span>
                   </p>
                 </div>
                 {/* Discount  */}
@@ -118,7 +118,7 @@ function Cart() {
                 <div className="flex items-center justify-between pb-4">
                   <p className="font-bold">TOTAL</p>
                   <p className="font-bold">
-                    BDT <span className="lws-total">{result}</span>
+                    BDT <span className="lws-total">{totalAmount}</span>
                   </p>
                 </div>
                 <button className="placeOrderbtn">place order</button>
