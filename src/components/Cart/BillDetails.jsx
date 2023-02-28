@@ -1,6 +1,9 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 function BillDetails() {
+  const bill = useSelector((state) => state.cart.cart);
+  console.log(bill);
   return (
     <div>
       <div className="billDetailsCard">

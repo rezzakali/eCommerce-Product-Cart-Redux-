@@ -5,9 +5,10 @@ import Cart from './components/Cart/Cart';
 import Home from './components/Home/Home';
 
 function App() {
-  const items = useSelector((state) => state.cart);
+  const items = useSelector((state) => state.cart.cart);
 
   const [isVisible, setIsVisible] = useState(true);
+
   const toggleVisibility = () => {
     setIsVisible(!isVisible);
   };
@@ -25,7 +26,7 @@ function App() {
             </a>
             <a className="navCart hover:cursor-pointer" id="lws-cart">
               <i className="text-xl fa-sharp fa-solid fa-bag-shopping"></i>
-              <span id="lws-totalCart">{items.length}</span>
+              <span id="lws-totalCart">{items?.length}</span>
             </a>
           </div>
         </div>

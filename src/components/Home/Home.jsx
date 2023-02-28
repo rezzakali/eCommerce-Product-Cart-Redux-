@@ -10,7 +10,7 @@ function Home() {
     <main className="py-16">
       <div className="productWrapper">
         <div className="productContainer" id="lws-productContainer">
-          {products.length !== 0 ? (
+          {products?.length !== 0 ? (
             products?.map((product, id) => (
               <ProductItem key={id} product={product} id={id} />
             ))

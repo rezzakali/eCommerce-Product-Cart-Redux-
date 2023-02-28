@@ -23,18 +23,16 @@ const reducer = (state = initialState, action) => {
           quantity: action.payload.quantity,
         },
       ];
+
     case DECREASEPRODUCTQUANTITY:
       const productId = action.payload;
 
-      state.map((product) => {
-        if (product.id === productId) {
-          console.log(product.quantity);
-          return {
-            ...state,
-            quantity: product.quantity - 1,
-          };
-        }
-      });
+      const products = state.map((product) =>
+        product.id === productId
+          ? { ...product, quantity: product.quantity - 1 }
+          : product
+      );
+      return products;
 
     default:
       return state;

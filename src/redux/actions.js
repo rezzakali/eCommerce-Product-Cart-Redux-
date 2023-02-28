@@ -1,7 +1,9 @@
 import {
   ADDTOCART,
+  DECREASE,
   DECREASEPRODUCTQUANTITY,
   DELETECARTITEM,
+  INCREASE,
   PRODUCTADDED,
 } from '../redux/actionTypes';
 
@@ -30,5 +32,18 @@ export const decreaseProductQuantity = (productId) => {
   return {
     type: DECREASEPRODUCTQUANTITY,
     payload: productId,
+  };
+};
+
+export const decrease = (product) => {
+  return {
+    type: DECREASE,
+    payload: product,
+  };
+};
+export const increase = (product) => {
+  return {
+    type: INCREASE,
+    payload: product,
   };
 };
