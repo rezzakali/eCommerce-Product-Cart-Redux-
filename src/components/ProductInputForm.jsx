@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { added } from '../../redux/actions';
+import { added } from '../redux/actions';
 
 function ProductInputForm() {
   const dispatch = useDispatch();

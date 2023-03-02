@@ -1,15 +1,15 @@
 import {
-  ADDTOCART,
-  DECREASE,
-  DECREASECARTITEM,
-  DELETECARTITEM,
-  INCREASE,
-} from '../../redux/actionTypes';
-import { initialStateForCart } from '../../redux/initialState';
+  ADD_TO_CART,
+  DECREASE_CART_ITEM,
+  DECREASE_PRODUCT_QNTY,
+  DELETE_CART_ITEM,
+  INCREASE_PRODUCT_QNTY,
+} from './actionTypes';
+import { initialStateForCart } from './initialState';
 
 const cartReducer = (state = initialStateForCart, action) => {
   switch (action.type) {
-    case ADDTOCART:
+    case ADD_TO_CART:
       const productToAdd = action.payload;
 
       const productInCart = state.cart.find(
@@ -34,12 +34,12 @@ const cartReducer = (state = initialStateForCart, action) => {
         };
       }
 
-    case DELETECARTITEM:
+    case DELETE_CART_ITEM:
       return {
         ...state,
         cart: state.cart.filter((item) => item.id !== action.payload),
       };
-    case DECREASECARTITEM:
+    case DECREASE_CART_ITEM:
       const oldItemIndex = state.findIndex(
         (item) => item.id === action.payload.id
       );
@@ -47,7 +47,7 @@ const cartReducer = (state = initialStateForCart, action) => {
         state[oldItemIndex].cartQuantity -= 1;
       }
 
-    case INCREASE:
+    case INCREASE_PRODUCT_QNTY:
       return {
         ...state,
         cart: state.cart.map((product) => {
@@ -60,7 +60,7 @@ const cartReducer = (state = initialStateForCart, action) => {
           return product;
         }),
       };
-    case DECREASE:
+    case DECREASE_PRODUCT_QNTY:
       return {
         ...state,
         cart: state.cart.map((product) => {

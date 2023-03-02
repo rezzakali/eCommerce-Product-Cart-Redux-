@@ -1,10 +1,15 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { decrease, deleteCart, increase } from '../../redux/actions';
+import {
+  cart_item_decrease,
+  deleteCart,
+  cart_item_increase,
+} from '../redux/actions';
 
 function Cart() {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cart);
+  const products = useSelector((state) => state.product);
 
   const totalAmount = cartItems
     ?.map((cartItem) => cartItem.quantity * cartItem.price)
@@ -14,11 +19,11 @@ function Cart() {
     dispatch(deleteCart(cartId));
   };
   const incrementHandler = (product) => {
-    dispatch(increase(product));
+    dispatch(cart_item_increase(product));
   };
 
   const decrementHandler = (product) => {
-    dispatch(decrease(product));
+    dispatch(cart_item_decrease(product));
   };
 
   return (
@@ -52,6 +57,12 @@ function Cart() {
                     <div className="flex items-center space-x-4">
                       <button
                         className="lws-incrementQuantity"
+                        disabled={
+                          products.find((item) => item.id === cartItem.id)
+                            ?.quantity +
+                            1 ===
+                          cartItem.quantity
+                        }
                         onClick={() => incrementHandler(cartItem)}
                       >
                         <i className="text-lg fa-solid fa-plus"></i>
@@ -70,7 +81,7 @@ function Cart() {
                     <p className="text-lg font-bold">
                       BDT{' '}
                       <span className="lws-calculatedPrice">
-                        {cartItem.price}
+                        {cartItem.quantity * cartItem.price}
                       </span>
                     </p>
                   </div>

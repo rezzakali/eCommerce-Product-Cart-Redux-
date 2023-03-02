@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteCart } from '../../redux/actions';
+import { deleteCart } from '../redux/actions';
 
 function LeftCart({ cartItem }) {
   const dispatch = useDispatch();

@@ -1,4 +1,4 @@
-import { DECREASEPRODUCTQUANTITY, PRODUCTADDED } from '../redux/actionTypes';
+import { DECREASE_PRODUCT_QUANTITY, PRODUCT_ADDED } from '../redux/actionTypes';
 import { initialState } from './initialState';
 
 const nextProductId = (products) => {
@@ -11,7 +11,7 @@ const nextProductId = (products) => {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case PRODUCTADDED:
+    case PRODUCT_ADDED:
       return [
         ...state,
         {
@@ -24,7 +24,7 @@ const reducer = (state = initialState, action) => {
         },
       ];
 
-    case DECREASEPRODUCTQUANTITY:
+    case DECREASE_PRODUCT_QUANTITY:
       const productId = action.payload;
 
       const products = state.map((product) =>

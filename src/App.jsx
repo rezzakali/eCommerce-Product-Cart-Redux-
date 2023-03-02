@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import logo from './assets/logo.png';
-import Cart from './components/Cart/Cart';
-import Home from './components/Home/Home';
+import Cart from './components/Cart';
+import Home from './components/Home';
 
 function App() {
   const items = useSelector((state) => state.cart.cart);
+  const products = useSelector((item) => item.product);
 
   const [isVisible, setIsVisible] = useState(true);
 
