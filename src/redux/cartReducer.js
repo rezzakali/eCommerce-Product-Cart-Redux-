@@ -1,6 +1,5 @@
 import {
   ADD_TO_CART,
-  DECREASE_CART_ITEM,
   DECREASE_PRODUCT_QNTY,
   DELETE_CART_ITEM,
   INCREASE_PRODUCT_QNTY,
@@ -39,13 +38,6 @@ const cartReducer = (state = initialStateForCart, action) => {
         ...state,
         cart: state.cart.filter((item) => item.id !== action.payload),
       };
-    case DECREASE_CART_ITEM:
-      const oldItemIndex = state.findIndex(
-        (item) => item.id === action.payload.id
-      );
-      if (state[oldItemIndex].cartQuantity > 1) {
-        state[oldItemIndex].cartQuantity -= 1;
-      }
 
     case INCREASE_PRODUCT_QNTY:
       return {

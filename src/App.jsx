@@ -14,6 +14,14 @@ function App() {
     setIsVisible(!isVisible);
   };
 
+  const incrementHandler = (product) => {
+    dispatch(cart_item_increase(product));
+  };
+
+  const decrementHandler = (product) => {
+    dispatch(cart_item_decrease(product));
+  };
+
   return (
     <>
       <nav className="bg-[#171C2A] py-4">

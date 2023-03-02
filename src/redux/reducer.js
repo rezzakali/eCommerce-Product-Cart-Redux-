@@ -1,4 +1,9 @@
-import { DECREASE_PRODUCT_QUANTITY, PRODUCT_ADDED } from '../redux/actionTypes';
+import {
+  DECREASE_PRODUCT_QUANTITY,
+  PRODUCT_ADDED,
+  UPDATE_PRODUCT_QUANTITY_BY_DECREAMENT,
+  UPDATE_PRODUCT_QUANTITY_BY_INCREAMENT,
+} from '../redux/actionTypes';
 import { initialState } from './initialState';
 
 const nextProductId = (products) => {
@@ -33,6 +38,24 @@ const reducer = (state = initialState, action) => {
           : product
       );
       return products;
+
+    case UPDATE_PRODUCT_QUANTITY_BY_INCREAMENT:
+      const product = state.map((item) =>
+        item.id === action.payload
+          ? { ...item, quantity: (item.quantity -= 1) }
+          : item
+      );
+
+      return product;
+
+    case UPDATE_PRODUCT_QUANTITY_BY_DECREAMENT:
+      const produck = state.map((item) =>
+        item.id === action.payload
+          ? { ...item, quantity: (item.quantity += 1) }
+          : item
+      );
+
+      return produck;
 
     default:
       return state;

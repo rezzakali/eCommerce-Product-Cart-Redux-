@@ -2,8 +2,10 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   cart_item_decrease,
-  deleteCart,
   cart_item_increase,
+  deleteCart,
+  update_proudct_quantity_by_decreament,
+  update_proudct_quantity_by_increament,
 } from '../redux/actions';
 
 function Cart() {
@@ -20,10 +22,12 @@ function Cart() {
   };
   const incrementHandler = (product) => {
     dispatch(cart_item_increase(product));
+    dispatch(update_proudct_quantity_by_increament(product.id));
   };
 
   const decrementHandler = (product) => {
     dispatch(cart_item_decrease(product));
+    dispatch(update_proudct_quantity_by_decreament(product.id));
   };
 
   return (

@@ -5,6 +5,8 @@ import {
   DELETE_CART_ITEM,
   INCREASE_PRODUCT_QNTY,
   PRODUCT_ADDED,
+  UPDATE_PRODUCT_QUANTITY_BY_DECREAMENT,
+  UPDATE_PRODUCT_QUANTITY_BY_INCREAMENT,
 } from '../redux/actionTypes';
 
 export const added = (productDetails) => {
@@ -45,5 +47,19 @@ export const cart_item_increase = (product) => {
   return {
     type: INCREASE_PRODUCT_QNTY,
     payload: product,
+  };
+};
+
+export const update_proudct_quantity_by_increament = (id) => {
+  return {
+    type: UPDATE_PRODUCT_QUANTITY_BY_INCREAMENT,
+    payload: id,
+  };
+};
+
+export const update_proudct_quantity_by_decreament = (id) => {
+  return {
+    type: UPDATE_PRODUCT_QUANTITY_BY_DECREAMENT,
+    payload: id,
   };
 };
