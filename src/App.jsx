@@ -7,6 +7,8 @@ import Home from './components/Home';
 function App() {
   const items = useSelector((state) => state.cart.cart);
   const products = useSelector((item) => item.product);
+  const qnty = items.map((item) => item.quantity);
+  const res = qnty.reduce((total, currentValue) => total + currentValue, 0);
 
   const [isVisible, setIsVisible] = useState(true);
 
@@ -14,13 +16,13 @@ function App() {
     setIsVisible(!isVisible);
   };
 
-  const incrementHandler = (product) => {
-    dispatch(cart_item_increase(product));
-  };
+  // const incrementHandler = (product) => {
+  //   dispatch(cart_item_increase(product));
+  // };
 
-  const decrementHandler = (product) => {
-    dispatch(cart_item_decrease(product));
-  };
+  // const decrementHandler = (product) => {
+  //   dispatch(cart_item_decrease(product));
+  // };
 
   return (
     <>
@@ -35,7 +37,7 @@ function App() {
             </a>
             <a className="navCart hover:cursor-pointer" id="lws-cart">
               <i className="text-xl fa-sharp fa-solid fa-bag-shopping"></i>
-              <span id="lws-totalCart">{items?.length}</span>
+              <span id="lws-totalCart">{res}</span>
             </a>
           </div>
         </div>
